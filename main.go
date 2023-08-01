@@ -1,19 +1,23 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
-	"github.com/gin-gonic/gin"
+	"github.com/aifuxi/jianyu-blog-api/pkg/setting"
+	"github.com/aifuxi/jianyu-blog-api/routers"
 )
 
 func main() {
-	r := gin.Default()
+	router := routers.InitRouter()
 
-	r.GET("/ping", func(ctx *gin.Context) {
-		ctx.JSON(http.StatusOK, gin.H{
-			"msg": "pong",
-		})
-	})
+	s := &http.Server{
+		Addr:           fmt.Sprintf(":%d", setting.HTTPPort),
+		Handler:        router,
+		ReadTimeout:    setting.ReadTimeout,
+		WriteTimeout:   setting.WriteTimeout,
+		MaxHeaderBytes: 1 << 20,
+	}
 
-	r.Run(":9001")
+	s.ListenAndServe()
 }
