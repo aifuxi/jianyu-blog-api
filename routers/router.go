@@ -28,12 +28,12 @@ func InitRouter() *gin.Engine {
 	{
 		// 获取标签列表
 		ap1v1.GET("/tags", v1.GetTags)
-		// 新建标签列表
+		// 新建标签
 		ap1v1.POST("/tags", v1.AddTag)
-		// 更新标签列表
-		ap1v1.PUT("/tags", v1.EditTag)
-		// 删除标签列表
-		ap1v1.DELETE("/tags", v1.DeleteTag)
+		// 更新标签
+		ap1v1.PUT("/tags/:id", v1.EditTag)
+		// 删除标签
+		ap1v1.DELETE("/tags/:id", v1.DeleteTag)
 	}
 
 	return r

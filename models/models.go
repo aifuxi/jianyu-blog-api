@@ -52,6 +52,7 @@ func init() {
 
 	db.SingularTable(true)
 	db.LogMode(true)
+	db.Debug()
 	db.DB().SetMaxIdleConns(10)
 	db.DB().SetConnMaxLifetime(100)
 
