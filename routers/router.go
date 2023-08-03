@@ -36,5 +36,18 @@ func InitRouter() *gin.Engine {
 		ap1v1.DELETE("/tags/:id", v1.DeleteTag)
 	}
 
+	{
+		// 获取文章列表
+		ap1v1.GET("/articles", v1.GetArticles)
+		// 获取指定文章
+		ap1v1.GET("/articles/:id", v1.GetArticle)
+		// 新建文章
+		ap1v1.POST("/articles", v1.AddArticle)
+		// 更新文章
+		ap1v1.PUT("/articles/:id", v1.EditArticle)
+		// 删除文章
+		ap1v1.DELETE("/articles/:id", v1.DeleteArticle)
+	}
+
 	return r
 }
