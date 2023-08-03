@@ -3,7 +3,9 @@ package routers
 import (
 	"net/http"
 
+	"github.com/aifuxi/jianyu-blog-api/middleware/jwt"
 	"github.com/aifuxi/jianyu-blog-api/pkg/setting"
+	"github.com/aifuxi/jianyu-blog-api/routers/api"
 	v1 "github.com/aifuxi/jianyu-blog-api/routers/api/v1"
 	"github.com/gin-gonic/gin"
 )
@@ -18,12 +20,15 @@ func InitRouter() *gin.Engine {
 
 	gin.SetMode(setting.RunMode)
 
-	r.GET("/test", func(ctx *gin.Context) {
+	r.GET("/auth", api.GetAuth)
+
+	r.GET("/ping", func(ctx *gin.Context) {
 		ctx.JSON(http.StatusOK, gin.H{
-			"msg": "new router struct",
+			"msg": "pong!",
 		})
 	})
 
+	r.Use(jwt.JWT())
 	ap1v1 := r.Group("/api/v1")
 	{
 		// 获取标签列表
