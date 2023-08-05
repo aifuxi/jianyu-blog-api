@@ -1,7 +1,6 @@
 package setting
 
 import (
-	"fmt"
 	"log"
 	"time"
 
@@ -46,6 +45,16 @@ type Database struct {
 
 var DatabaseSetting = Database{}
 
+type Redis struct {
+	Host        string
+	Password    string
+	MaxIdle     int
+	MaxActive   int
+	IdleTimeout int
+}
+
+var RedisSetting = Redis{}
+
 var cfg *ini.File
 
 func Setup() {
@@ -76,7 +85,9 @@ func Setup() {
 		log.Fatalf("Cfg.MapTo DatabaseSetting err: %v", err)
 	}
 
-	fmt.Printf("AppSetting: %v\n", AppSetting)
-	fmt.Printf("ServerSetting: %v\n", ServerSetting)
-	fmt.Printf("DatabaseSetting: %v\n", DatabaseSetting)
+	err = cfg.Section("redis").MapTo(&RedisSetting)
+
+	if err != nil {
+		log.Fatalf("Cfg.MapTo RedisSetting err: %v", err)
+	}
 }

@@ -3,7 +3,7 @@ module github.com/aifuxi/jianyu-blog-api
 go 1.20
 
 require (
-	github.com/astaxie/beego v1.12.3
+	github.com/astaxie/beego v1.10.1
 	github.com/gin-gonic/gin v1.9.1
 	github.com/go-ini/ini v1.67.0
 	github.com/jinzhu/gorm v1.9.16
@@ -22,6 +22,7 @@ require (
 	github.com/go-playground/validator/v10 v10.14.1 // indirect
 	github.com/go-sql-driver/mysql v1.7.1 // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
+	github.com/gomodule/redigo v1.8.9 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.5 // indirect
