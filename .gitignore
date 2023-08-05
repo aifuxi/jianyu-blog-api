@@ -24,3 +24,6 @@ go.work
 # air
 .air.toml
 tmp
+
+# runtime
+*.log
